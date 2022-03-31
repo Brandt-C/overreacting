@@ -1,23 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './views/Home';
+import Shop from './views/Shop';
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+
+  const [students, setStudents] = useState(['Moi', 'me', 'myself', 'I'])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar students={students} />
+      <Routes>
+        <Route children path='/' element={<Home />} />
+        <Route children path='/shop' element={<Shop students={students} setStudents={setStudents}/>} />
+      </Routes>
     </div>
   );
 }
